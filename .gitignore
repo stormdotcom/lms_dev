@@ -1,0 +1,14 @@
+.env.dev
+**/.env.dev
+**/.DS_Store
+**/node_modules
+
+# Ignore all package-lock.json files in any directory
+**/package-lock.json
+
+# Ignore all .env.dev files in any directory
+**/.env.dev
+
+
+# Ignore all log files
+*.log
