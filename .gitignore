@@ -12,3 +12,5 @@
 
 # Ignore all log files
 *.log
+
+.vscode
