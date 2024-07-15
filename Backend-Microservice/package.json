@@ -1,0 +1,20 @@
+{
+    "name": "lms-microservice",
+    "version": "1.0.0",
+    "description": "lms service gateway, primary, analytics and notification",
+    "main": "index.js",
+    "scripts": {
+        "dev:gateway": "cd gateway && npm run dev",
+        "dev:primary": "cd primary && npm run dev",
+        "dev:noti": "cd notifications && npm run dev",
+        "dev:analy": "cd analytics && npm run dev",
+        "dev": "npm run dev:gateway && npm run dev:primary && npm run dev:analy && npm run:noti",
+        "start:gateway": "cd gateway && npm i && NODE_ENV=prod npm start",
+        "start:primary": "cd primary && npm i && NODE_ENV=prod npm start",
+        "start:noti": "cd notifications && npm i && NODE_ENV=prod npm start",
+        "start:analy": "cd analytics && npm i && NODE_ENV=prod npm start",
+        "prod": "npm run start:gateway && npm run start:primary && npm run start:analy && npm run start:noti"
+    },
+    "author": "Ajmal Nasumudeen",
+    "license": "MIT"
+}
