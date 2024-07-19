@@ -1,4 +1,13 @@
-# lms_dev
-This LMS revolutionizes online learning with a robust, flexible platform. It uses RabbitMQ for event-driven architecture, handling progress tracking, logins, and course visits. Key features: dynamic course creation, delayed video uploads, responsive design, gamified learning, and personalized course recommendations.
+# Learning Management System (LMS)
 
+A comprehensive Learning Management System (LMS) designed to facilitate learning and knowledge transfer within companies and support freelance tutors. This platform addresses the need for an accessible and efficient LMS in small companies. It offers robust features for both learners and instructors.
 
+## Features and Functionality
+- **Video Course Support**: Enables the creation and consumption of video courses.
+- **Learner Dashboard**: Provides learners with an overview of their progress and activities.
+- **Playback Tracking and Resume**: Allows learners to resume video playback from where they left off.
+- **Time Spent Tracking**: Tracks the time learners spend on each course.
+- **Progress Tracking**: Monitors and displays learners' progress through courses.
+- **Course Creation for Instructors**: Instructors can create courses, upload video lectures, and add document attachments related to the videos.
+- **Microservices Architecture**: Ensures scalability and maintainability.
+- **RabbitMQ Integration**: Facilitates efficient and reliable communication between services.
