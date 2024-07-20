@@ -2,6 +2,15 @@
 
 A comprehensive Learning Management System (LMS) designed to facilitate learning and knowledge transfer within companies and support freelance tutors. This platform addresses the need for an accessible and efficient LMS in small companies. It offers robust features for both learners and instructors.
 
+#### Credentials
+``` Instructor
+    email: ajmal@test.com
+    password: 123
+
+    Student
+    email: s1@student.com
+    password: 12345678
+ ```
 ## Features and Functionality
 - **Video Course Support**: Enables the creation and consumption of video courses.
 - **Learner Dashboard**: Provides learners with an overview of their progress and activities.
