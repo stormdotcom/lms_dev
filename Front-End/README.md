@@ -1,3 +1,5 @@
-# LMS
+# LMS Frontend
 
-ioiui
+#### Libraries Used
+
+- Socket.io, React hook form, tailwindcss, headlessui, heroicons, react-spinner, saga, axios, redux, 
