@@ -1,6 +1,6 @@
 # Learning Management System (LMS)
-
-A comprehensive Learning Management System (LMS) designed to facilitate learning and knowledge transfer within companies and support freelance tutors. This platform addresses the need for an accessible and efficient LMS in small companies. It offers robust features for both learners and instructors.
+[See project here](https://learning-management-demo.netlify.app/)
+ A comprehensive Learning Management System (LMS) designed to facilitate learning and knowledge transfer within companies and support freelance tutors. This platform addresses the need for an accessible and efficient LMS in small companies. It offers robust features for both learners and instructors.
 
 #### Full System Architecture.
 
