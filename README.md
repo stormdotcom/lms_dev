@@ -2,7 +2,7 @@
 
 A comprehensive Learning Management System (LMS) designed to facilitate learning and knowledge transfer within companies and support freelance tutors. This platform addresses the need for an accessible and efficient LMS in small companies. It offers robust features for both learners and instructors.
 
-##### Full System Architecture in glance.
+#### Full System Architecture.
 
 ![alt text](5_6123184313828643108_page-0001.jpg)
 #### Credentials
