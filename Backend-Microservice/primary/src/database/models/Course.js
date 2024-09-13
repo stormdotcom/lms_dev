@@ -54,10 +54,6 @@ Course.init(
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
         },
-        requirements: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: true,
-        },
         outcome: {
             type: DataTypes.TEXT,
             allowNull: true,
@@ -91,6 +87,14 @@ Course.init(
         modelName: "Course",
         tableName: "Courses",
         timestamps: true,
+        indexes: [
+            {
+                fields: ['title'],
+            },
+            // {
+            //   fields: ['description'],
+            // },
+        ]
     }
 );
 Course.belongsTo(User, { as: 'instructor' });

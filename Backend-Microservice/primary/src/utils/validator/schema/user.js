@@ -17,8 +17,25 @@ const updateProfileSchema = Joi.object({
     }).optional()
 });
 
+const searchSchema = Joi.object({
+    search: Joi.string()
+        .trim()
+        .min(2)
+        .max(50)
+        .pattern(/^[a-zA-Z0-9 ]*$/)
+        .required()
+        .messages({
+            'string.empty': 'Search term is required',
+            'string.min': 'Search term must be at least 2 characters long',
+            'string.max': 'Search term must be less than 50 characters long',
+            'string.pattern.base': 'Search term can only contain letters, numbers, and spaces',
+            'any.required': 'Search term is required'
+        })
+});
+
 updateProfileSchema
 
 module.exports = {
-    updateProfileSchema
+    updateProfileSchema,
+    searchSchema
 }

@@ -24,7 +24,7 @@ const fileServer = express.static(path.join(__dirname, 'public'))
 
 
 const serveFile = (req, res) => {
-    console.log("here file server request")
+
     const { filename } = req.params;
     const uploadDirectory = path.join(__dirname, '../../public/uploads');
     const filePath = path.join(uploadDirectory, filename);

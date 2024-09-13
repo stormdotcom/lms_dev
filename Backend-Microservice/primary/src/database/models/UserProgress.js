@@ -1,5 +1,9 @@
 const { DataTypes, Model } = require("sequelize");
-const { sequelize } = require("../connection");
+const  sequelize = require("../../utils/sequelizeCache");
+
+const User = require("./User");
+const Course = require("./Course");
+const Video = require("./Video");
 
 class UserProgress extends Model { }
 
@@ -35,15 +39,15 @@ UserProgress.init(
             }
         },
         progress: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
-            defaultValue: 0.0,
+            defaultValue: 0,
         },
-        lastAccessed: {
-            type: DataTypes.DATE,
+        typeOfProgress: {
+            type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
+            defaultValue: "course",
+        }
     },
     {
         sequelize,
@@ -52,5 +56,9 @@ UserProgress.init(
         timestamps: true,
     }
 );
+
+UserProgress.belongsTo(User, { foreignKey: "userId" });
+UserProgress.belongsTo(Course, { foreignKey: "courseId" });
+UserProgress.belongsTo(Video, { foreignKey: "videoId" });
 
 module.exports = UserProgress;

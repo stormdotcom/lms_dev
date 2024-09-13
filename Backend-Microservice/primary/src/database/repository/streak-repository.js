@@ -6,7 +6,6 @@ const { ResponseDataSuccess } = require("../../utils/common-utils");
 class UserStreakRepository {
 
     async handleLoggedInSession(userId) {
-        console.log("here userId", userId)
         try {
             const today = new Date();
             today.setHours(0, 0, 0, 0);

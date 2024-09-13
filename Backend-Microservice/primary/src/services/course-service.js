@@ -1,4 +1,5 @@
 
+const Video = require('../database/models/Video');
 const CourseRepository = require('../database/repository/course-repository');
 const { APIError, STATUS_CODES } = require('../utils/app-errors');
 const { generateSlug } = require('../utils/common-utils');
@@ -22,6 +23,15 @@ class CourseService {
     async getCourseById(courseId) {
         try {
             const course = await this.repository.getCourse({ id: courseId });
+            return course;
+        } catch (err) {
+            throw new APIError(err.message, STATUS_CODES.INTERNAL_ERROR, true);
+        }
+    }
+    async updateDetailed(courseId, data) {
+        try {
+            const criteria = { id: courseId }
+            const course = await this.repository.updateCourseDetailed({ criteria, data });
             return course;
         } catch (err) {
             throw new APIError(err.message, STATUS_CODES.INTERNAL_ERROR, true);
@@ -52,6 +62,7 @@ class CourseService {
 
     async updateCourse(courseId, updates) {
         try {
+            const duration = Video.findAll({ where: { courseId }, attributes: ["duration"] })
             const updatedCourse = await this.repository.updateCourse(courseId, updates);
             return updatedCourse;
         } catch (err) {
@@ -65,6 +76,14 @@ class CourseService {
             return deleted;
         } catch (err) {
             throw new APIError(err.message, STATUS_CODES.INTERNAL_ERROR, true);
+        }
+    }
+    async search(criteria) {
+        try {
+            const data = await this.repository.searchCourse(criteria);
+            return data.map(item => ({ ...item, type: "course", subTitle: item.description }));
+        } catch (error) {
+
         }
     }
 
@@ -97,7 +116,6 @@ class CourseService {
     async getCoursersByInstructor(id, pagination) {
         try {
             const courses = await this.repository.findById(id, pagination);
-            console.log("here", courses)
             return courses;
         } catch (err) {
             throw new APIError(err.message, STATUS_CODES.INTERNAL_ERROR, true);

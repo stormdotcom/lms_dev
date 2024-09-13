@@ -118,6 +118,18 @@ class VideoRepository {
             throw new Error('Error listing videos');
         }
     }
+    async sumDurations(courseId) {
+        try {
+            const result = await Video.findOne({
+                where: { courseId },
+                attributes: [[Video.sequelize.fn('SUM', Video.sequelize.col('duration')), 'totalDuration']],
+            });
+
+            return result.dataValues.totalDuration;
+        } catch (error) {
+            throw new Error('Error calculating total duration:', error);
+        }
+    };
     async listVideoPlayList(courseId) {
         try {
             const videos = await sequelize.query(

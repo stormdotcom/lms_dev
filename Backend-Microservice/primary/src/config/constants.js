@@ -15,13 +15,17 @@ const ROUTING_KEY = {
     SESSION: "session",
 
     RECENT_ACTIVITIES: "recent_activities"
-}
+};
+
 const EVENT_TYPES = {
     LOGGED_IN_SESSION: "loggedIn_session",
     COURSE_VISITED: "course_visited",
     PROGRESS_UPDATE: "progress_update",
+    LECTURE_START: "lecture_start",
+    LECTURE_PAUSE: "lecture_pause",
     SESSION_DURATION: "session_duration",
-    LOGGED_OUT: "logged_out"
+    LOGGED_OUT: "logged_out",
+    PAGE_VISIT_DURATION: "visit_duration"
 };
 const USER_TYPES = { ADMIN: "admin", CREATOR: "instructor", USER: "user" };
 

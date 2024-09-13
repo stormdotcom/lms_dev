@@ -20,6 +20,7 @@ class UserService {
     const { email, password } = userInputs;
     try {
       const existingUser = await this.repository.findUser({ email });
+
       if (existingUser) {
         const validPassword = await ValidatePassword(password, existingUser.password);
         if (validPassword) {
@@ -45,8 +46,7 @@ class UserService {
         throw APIError("Password", "Invalid Credential", 401)
       }
     } catch (err) {
-      console.log("here err", err.statusCode)
-      throw new APIError("Api Error", "Invalid Credential" || "Sign In Error", err.statusCode || 401, true);
+      throw new APIError("Invalid Credential", "Invalid Credential" || "Sign In Error", err.statusCode || 401, true);
     }
   }
 
@@ -116,6 +116,15 @@ class UserService {
   async GetUserDetails(userId) {
     try {
       const user = await this.repository.findUser({ id: userId });
+      return user;
+    } catch (err) {
+      throw new APIError(err.message, STATUS_CODES.INTERNAL_ERROR, true);
+    }
+  }
+
+  async GetUserDetailDashboard(userId) {
+    try {
+      const user = await this.repository.findUser({ id: userId }, ["firstName", "lastName", "options"]);
       return user;
     } catch (err) {
       throw new APIError(err.message, STATUS_CODES.INTERNAL_ERROR, true);

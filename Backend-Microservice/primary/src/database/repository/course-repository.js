@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { User } = require('../models');
 const Course = require('../models/Course');
 
@@ -24,6 +25,41 @@ class CourseRepository {
             return course.dataValues;
         } catch (error) {
             throw new Error('Error fetching course');
+        }
+    }
+    async updateCourseDetailed({ criteria, data }) {
+        try {
+            const course = await Course.findOne({
+                where: criteria
+            });
+            const currentOptions = course.options || {};
+
+            const updatedOptions = {
+                ...currentOptions,
+                ...data
+            };
+
+            course.options = updatedOptions;
+
+            await course.save();
+        } catch (error) {
+            throw new Error('Error fetching course');
+        }
+    }
+    async searchCourse(criteria) {
+        try {
+            const courses = await Course.findAll({
+                where: {
+                    [Op.or]: [
+                        { title: { [Op.like]: `%${criteria}%` } },
+                        { description: { [Op.like]: `%${criteria}%` } }
+                    ]
+                },
+                attributes: ["slug", "title", "description", "thumbnailUrl"]
+            });
+            return courses.map(course => course.dataValues);
+        } catch (error) {
+            throw new Error('Error fetching courses');
         }
     }
 

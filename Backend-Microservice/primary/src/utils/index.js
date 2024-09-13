@@ -37,7 +37,7 @@ module.exports.FormateUserData = (dataValues) => {
 };
 
 module.exports.FormateUserDataAuth = (dataValues) => {
-  console.log("here FormateUserDataAuth", dataValues)
+
   if (dataValues) {
     const newData = _.omit(dataValues, ["status", , "id", "password", "createdAt", "updatedAt"]);
     return newData;

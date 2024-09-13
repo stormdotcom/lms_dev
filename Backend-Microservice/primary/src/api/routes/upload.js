@@ -46,7 +46,7 @@ router.put("/course/thumbnail-image", upload.single('file'), async (req, res, ne
         const folder = "thumbnails";
         const filePath = req.file.path;
         const { url } = await uploadFileToS3(folder, filePath);
-        console.log("here", url)
+
         fs.unlinkSync(filePath);
 
         return res.status(201).json({ data: url });
@@ -62,7 +62,7 @@ router.put("/course/attachment/:videoId", uploadAttachmentsValidate, upload.sing
         const folder = "attachments";
         const filePath = req.file.path;
         const { url } = await uploadFileToS3(folder, filePath);
-        console.log("here", url)
+
         fs.unlinkSync(filePath);
         await videoService.UpdateAttachments(videoId, url)
         return res.status(201).json({ data: url });
@@ -76,7 +76,6 @@ router.put("/course/attachment/:videoId", uploadAttachmentsValidate, upload.sing
 router.post('/course/video', async (req, res) => {
 
     const { fileName, fileType, slug } = req.body;
-    console.log("here", slug, fileName, fileType)
     const Key = `videos/${slug}/${fileName}`;
 
     try {
@@ -114,7 +113,7 @@ router.post('/course/video/url', async (req, res) => {
 
 router.post('/course/video/complete', async (req, res) => {
     const { Key, UploadId, Parts, courseId, videoNo, slug, title } = req.body;
-    console.log("here", { Key, UploadId, Parts, courseId, videoNo, slug })
+
     const { id } = req.user;
     try {
 

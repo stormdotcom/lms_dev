@@ -23,18 +23,22 @@ class UserRepository {
     }
   }
 
-  async findUser(criteria) {
+  async findUser(criteria, attributes = ['firstName', 'lastName', 'options', 'email', 'phone', 'password', 'id', 'role', 'isVerified']) {
     try {
-      const data = await User.findOne({ where: criteria });
+      const data = await User.findOne({
+        where: criteria,
+        attributes,
+        useCache: true, 
+         cacheTTL: 300  
+      });
       if (!data) {
-        throw APIError("Email", "Invalid Credential")
+        throw new APIError("Email", "Invalid Credential");
       }
-      return data.dataValues;
+      return data.dataValues ? data.dataValues : data;
     } catch (err) {
       throw new APIError("", err.message, STATUS_CODES.NOT_FOUND, true);
     }
   }
-
   async updateUser(id, updateData) {
     try {
       const user = await User.findByPk(id);
@@ -46,7 +50,7 @@ class UserRepository {
       await user.save();
       return user.dataValues;
     } catch (err) {
-      throw new APIError(err.message, "API Error", STATUS_CODES.INTERNAL_ERROR);
+      throw new APIError(err.message, err.message, STATUS_CODES.INTERNAL_ERROR);
     }
   }
 

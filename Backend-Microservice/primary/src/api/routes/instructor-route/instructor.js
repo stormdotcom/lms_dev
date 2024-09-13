@@ -82,11 +82,11 @@ router.put("/profile-image-upload", upload.single('file'), async (req, res, next
         const folder = "profile-picture";
         const filePath = req.file.path;
         const { url } = await uploadFileToS3(folder, filePath);
-        console.log("here", url)
+
         fs.unlinkSync(filePath);
         const { id } = req.user;
         const data = await service.UpdateAvatar(id, url);
-        console.log("here", data)
+
         return res.status(201).json(data);
     } catch (err) {
         console.log("Error : \n", err)

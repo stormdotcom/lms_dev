@@ -12,26 +12,6 @@ const courseService = new CourseService();
 const videoService = new VideoService();
 const ds = new VideoDurationRepository();
 
-router.get("/completed", async (req, res, next) => {
-  try {
-    // db saved
-    if (1 === 1) {
-      const channel = await getRabbitMQChannel();
-      const notification = { type: "course_completed", data: "Test" };
-      channel.publish(
-        "notifications",
-        "",
-        Buffer.from(JSON.stringify(notification))
-      );
-      return res.status(201).json(ResponseDataSuccess());
-    }
-  } catch (err) {
-    next(err);
-  }
-});
-module.exports = router;
-
-
 router.get("/course-all", async (req, res, next) => {
   try {
     const criteria = { publish: true }
@@ -48,14 +28,10 @@ router.get("/video/:id", async (req, res, next) => {
     let result = {}
     const id = req.params.id
     result = await videoService.GetVideoById(id);
-    videoNO = result.options.meta.videoNo;
-    console.log("here videoNO", videoNO);
-    result = _.pick(result, ["courseId", "sourceUrl", "attachments", "title"]);
-
-    result.videoNO = videoNO;
+    videoNo = result.options.meta.videoNo;
+    result = _.pick(result, ["courseId", "sourceUrl", "attachments", "title", "duration"]);
+    result.videoNo = videoNo;
     const courseId = result?.courseId
-    console.log("here courseId", courseId);
-
     const videoList = await videoService.ListVideoPlayList(courseId);
     result.videoList = videoList
     return res.status(200).json({ data: result });

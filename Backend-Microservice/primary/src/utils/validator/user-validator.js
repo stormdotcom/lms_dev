@@ -1,5 +1,5 @@
 const { validator } = require(".");
-const { updateProfileSchema } = require("./schema/user");
+const { updateProfileSchema, searchSchema } = require("./schema/user");
 
 
 const validateProfileDetails = (
@@ -11,6 +11,15 @@ const validateProfileDetails = (
 };
 
 
+const searchValidator = (
+    req,
+    res,
+    next
+) => {
+    validator(searchSchema, req.query, next);
+};
+
 module.exports = {
-    validateProfileDetails
+    validateProfileDetails,
+    searchValidator
 }

@@ -17,7 +17,6 @@ const ProjectConfig = async () => {
         };
         return await User.create(newAdminDetails);
     } catch (err) {
-        console.log("here ", err)
     }
 }
 

@@ -215,4 +215,16 @@ router.post('/publish/:id', async (req, res, next) => {
     }
 });
 
+router.patch('/publish/:id', async (req, res, next) => {
+    const { id } = req.params;
+    const data = req.body;
+    try {
+        await courseService.updateDetailed(id, data);
+        return res.status(201).json({ message: 'saved successfully' });
+    } catch (error) {
+        console.log(error.message)
+        next(error)
+    }
+});
+
 module.exports = router;
